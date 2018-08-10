@@ -141,6 +141,71 @@ file_handle.close()
 
 ```
 
+## Using Datetime
+
+Python also has `datetime` which allows you to accurately get the time. If you want to find out what time it is, simply -
+
+```Python
+
+from datetime import *
+
+present = datetime.datetime.now()
+print(present)
+
+```
+
+You can also format it and compare them -
+
+```Python
+from datetime import datetime
+
+pullData = open("sampleText.txt", "r").read()
+dataList = pullData.split('\n')
+xList = []
+yList = []
+fmt = '%Y-%m-%d %H:%M:%S.%f'
+for eachLine in dataList:
+    if len(eachLine) > 1:
+        x, y = eachLine.split(',')
+        timestamp1 = datetime.strptime(x, fmt)
+        timestamp2 = datetime.strptime(str(datetime.now()), fmt)
+        interval = (timestamp2 - timestamp1)
+        if interval.days <= 1:
+            date, time = x.split(' ')
+            
+```
+
+You can find the present day, month, year, decade... simply type -
+
+```Python
+
+import datetime.datetime as present
+
+print(present.day)
+print(present.month)
+print(present.minute)
+print(present.second)
+print(present.year)
+
+```
+
+And so on...
+
+You can then use in Matplotlib on one of the axes. Copy as follows (if you want to do that) - 
+
+**NOTE** - THIS IS NOT THE ENTIRE PART. IN ORDER FOR IT TO RUN, YOU NEED THE ENTIRE CODE (besides classes `PageOne` and `PageTwo` and the content in it). THIS IS ONLY THE BIT OF CODE WHICH PUTS THE DATES ON THE X-AXIS.
+
+```Python
+
+xAxisDateTime = str(timestamp1.date()) + " " + str(timestamp1.hour) + ":" + str(timestamp1.minute)
+xList.append(xAxisDateTime)
+yList.append(int(y))
+a.clear()
+a.plot(xList, yList)
+f.autofmt_xdate()
+
+```
+
 ## Embedding in a Tk Canvas
 
 To put it simple, you use a backend called `TkAgg` which allows you Matplotlib to be displayed in Tkinter. You can then add styles and uniqueness using `plt.style.use('style')`. Simply -
