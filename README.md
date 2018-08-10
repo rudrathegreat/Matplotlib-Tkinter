@@ -133,7 +133,7 @@ Os is used to save files. To save some text into a file, simply -
 import os.path
 
 text = 'Hi my name is John!'
-path = D:\John\Documnts\file.txt
+path = 'D:\John\Documnts\file.txt'
 
 file_handle = open(path, 'a') # a means to append. w means to overwrite
 file_handle.write(text)
@@ -223,6 +223,51 @@ Here is a quick overview of the project -
 The aim of this project is to install smart water sensors into local areas known to be habitats for platypus. The will utilise environmental sensors connected to BBC Microbit which will allow the sensors to withdraw and store water quality information which is displayed nearby at signed stations. The signed stations will display the relevant information and act as a point where emergency information can be sent via 4G networks to relevant authorities. The equipment is to be designed utilising small-scale electronics powered by solar panels, as well as the BBC Microbit and E-waste which will allow for local students and community engagement. This allows the project to act as an educational tool that can raise awareness of Stormwater pollution.
 All explanations are commented in code.
 
+Here is a quick peep of the code -
+
+**NOTE** - THIS IS NOT THE ENTIRE CODE
+
+```Python
+
+import matplotlib
+import matplotlib.pyplot as plt
+
+matplotlib.use("TkAgg")
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.figure import Figure
+import matplotlib.animation as animation
+from matplotlib import style
+
+import tkinter as tk
+from tkinter import ttk
+#import serial
+from random import randint
+import os.path
+from datetime import *
+from time import sleep
+import matplotlib.dates as mdates
+
+class PageThree(tk.Frame):
+
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        label = tk.Label(self, text="Graph Page!", font=LARGE_FONT)
+        label.pack(pady=10, padx=10)
+
+        button1 = ttk.Button(self, text="Back to Home",
+                             command=lambda: controller.show_frame(StartPage))
+        button1.pack()
+
+        canvas = FigureCanvasTkAgg(f, self)
+        canvas.show()
+        canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
+
+        toolbar = NavigationToolbar2TkAgg(canvas, self)
+        toolbar.update()
+        canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        
+```
+
 ## Further Links
 
 You check out these links to go to further links -
@@ -240,5 +285,5 @@ You check out these links to go to further links -
 > https://github.com/PlatypusProject/Platypus-Monitoring-Project
 >
 > https://github.com/rudrathegreat
-
-https://www.python.org
+>
+> https://www.python.org
