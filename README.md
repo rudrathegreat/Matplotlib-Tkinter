@@ -24,17 +24,17 @@ xcode-select --install
 
 ## Getting Started
 
-> You can create a line plot with text labels using `Python plot().`
+> You can create a line plot with text labels using `plot()`
 >
-> Multiple axes (i.e. subplots) are created with the`Python subplot()` function
+> Multiple axes (i.e. subplots) are created with the`subplot()` function
 >
-> Matplotlib can display images (assuming equally spaced horizontal dimensions) using the `Python imshow()` function
+> Matplotlib can display images (assuming equally spaced horizontal dimensions) using the `imshow()` function
 >
-> The `Python pcolormesh()` function can make a colored representation of a two-dimensional array, even if the horizontal dimensions are unevenly spaced. The `Python contour()` function is another way to represent the same data
+> The `pcolormesh()` function can make a colored representation of a two-dimensional array, even if the horizontal dimensions are unevenly spaced. The `contour()` function is another way to represent the same data
 >
-> The`Python hist()` function automatically generates histograms and returns the bin counts or probabilities
+> The`hist()` function automatically generates histograms and returns the bin counts or probabilities
 >
-> You can add arbitrary paths in Matplotlib using the `Python matplotlib.path` module
+> You can add arbitrary paths in Matplotlib using the `matplotlib.path` module
 >
 > The mplot3d toolkit (see Getting started and 3D plotting) has support for simple 3d graphs including surface, wireframe, scatter, and bar charts.
 >
@@ -42,9 +42,9 @@ xcode-select --install
 
 ## More Complicated Stuff...
 
-`Python matplotlib.pyplot` is a collection of command style functions that make matplotlib work like MATLAB. Each pyplot function makes some change to a figure: e.g., creates a figure, creates a plotting area in a figure, plots some lines in a plotting area, decorates the plot with labels, etc.
+`matplotlib.pyplot` is a collection of command style functions that make matplotlib work like MATLAB. Each pyplot function makes some change to a figure: e.g., creates a figure, creates a plotting area in a figure, plots some lines in a plotting area, decorates the plot with labels, etc.
 
-In `Python matplotlib.pyplot` various states are preserved across function calls, so that it keeps track of things like the current figure and plotting area, and the plotting functions are directed to the current axes (please note that “axes” here and in most places in the documentation refers to the axes part of a figure and not the strict mathematical term for more than one axis).
+In `matplotlib.pyplot` various states are preserved across function calls, so that it keeps track of things like the current figure and plotting area, and the plotting functions are directed to the current axes (please note that “axes” here and in most places in the documentation refers to the axes part of a figure and not the strict mathematical term for more than one axis).
 
 Generating visualizations with pyplot is very quick:
 
@@ -59,7 +59,7 @@ plt.show()
 
 to...
 
-There are some instances where you have data in a format that lets you access particular variables with strings. For example, with `Python numpy.recarray` or `Python pandas.DataFrame`.
+There are some instances where you have data in a format that lets you access particular variables with strings. For example, with `numpy.recarray` or `pandas.DataFrame`.
 
 Matplotlib allows you provide such an object with the data keyword argument. If provided, then you may generate plots with the strings corresponding to these variables.
 
@@ -81,7 +81,7 @@ plt.show()
 ## Intro to Tkinter
 ### Make a Window
 
-To make a window, call Tkinter and then use `Python Tk()` to make a window, then add `Python Tk.mainloop()` to keep the window up and running.
+To make a window, call Tkinter and then use `Tk()` to make a window, then add `Tk.mainloop()` to keep the window up and running.
 
 ```Python
 
@@ -123,4 +123,3 @@ button.pack()
 root.mainloop()
 
 ```
-button = Button
