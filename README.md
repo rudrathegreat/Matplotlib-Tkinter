@@ -123,3 +123,122 @@ button.pack()
 root.mainloop()
 
 ```
+
+## Os
+
+Os is used to save files. To save some text into a file, simply -
+
+```Python
+
+import os.path
+
+text = 'Hi my name is John!'
+path = D:\John\Documnts\file.txt
+
+file_handle = open(path, 'a') # a means to append. w means to overwrite
+file_handle.write(text)
+file_handle.close()
+
+```
+
+## Embedding in a Tk Canvas
+
+To put it simple, you use a backend called `TkAgg` which allows you Matplotlib to be displayed in Tkinter. You can then add styles and uniqueness using `plt.style.use('style')`. Simply -
+
+```Python
+
+import matplotlib as mpl
+import numpy as np
+import sys
+if sys.version_info[0] < 3:
+    import Tkinter as tk
+else:
+    import tkinter as tk
+import matplotlib.backends.tkagg as tkagg
+from matplotlib.backends.backend_agg import FigureCanvasAgg
+
+
+def draw_figure(canvas, figure, loc=(0, 0)):
+    """ Draw a matplotlib figure onto a Tk canvas
+
+    loc: location of top-left corner of figure on canvas in pixels.
+    Inspired by matplotlib source: lib/matplotlib/backends/backend_tkagg.py
+    """
+    figure_canvas_agg = FigureCanvasAgg(figure)
+    figure_canvas_agg.draw()
+    figure_x, figure_y, figure_w, figure_h = figure.bbox.bounds
+    figure_w, figure_h = int(figure_w), int(figure_h)
+    photo = tk.PhotoImage(master=canvas, width=figure_w, height=figure_h)
+
+    # Position: convert from top-left anchor to center anchor
+    canvas.create_image(loc[0] + figure_w/2, loc[1] + figure_h/2, image=photo)
+
+    # Unfortunately, there's no accessor for the pointer to the native renderer
+    tkagg.blit(photo, figure_canvas_agg.get_renderer()._renderer, colormode=2)
+
+    # Return a handle which contains a reference to the photo object
+    # which must be kept live or else the picture disappears
+    return photo
+
+# Create a canvas
+w, h = 300, 200
+window = tk.Tk()
+window.title("A figure in a canvas")
+canvas = tk.Canvas(window, width=w, height=h)
+canvas.pack()
+
+# Generate some example data
+X = np.linspace(0, 2 * np.pi, 50)
+Y = np.sin(X)
+
+# Create the figure we desire to add to an existing canvas
+fig = mpl.figure.Figure(figsize=(2, 1))
+ax = fig.add_axes([0, 0, 1, 1])
+ax.plot(X, Y)
+
+# Keep this handle alive, or else figure will disappear
+fig_x, fig_y = 100, 100
+fig_photo = draw_figure(canvas, fig, loc=(fig_x, fig_y))
+fig_w, fig_h = fig_photo.width(), fig_photo.height()
+
+# Add more elements to the canvas, potentially on top of the figure
+canvas.create_line(200, 50, fig_x + fig_w / 2, fig_y + fig_h / 2)
+canvas.create_text(200, 50, text="Zero-crossing", anchor="s")
+
+# Let Tk take over
+tk.mainloop()
+
+```
+
+It will show a sin-wave type graph.
+
+## Why Use It?
+
+We are using these two modules to make a GUI Interface which will give us information about water quality in a nearby river. It will show temperature, pH and conductivity and lively update and save documents.
+
+We will also be using LoRa to transmit the data over long distances.
+
+Here is a quick overview of the project - 
+
+The aim of this project is to install smart water sensors into local areas known to be habitats for platypus. The will utilise environmental sensors connected to BBC Microbit which will allow the sensors to withdraw and store water quality information which is displayed nearby at signed stations. The signed stations will display the relevant information and act as a point where emergency information can be sent via 4G networks to relevant authorities. The equipment is to be designed utilising small-scale electronics powered by solar panels, as well as the BBC Microbit and E-waste which will allow for local students and community engagement. This allows the project to act as an educational tool that can raise awareness of Stormwater pollution.
+All explanations are commented in code.
+
+## Further Links
+
+You check out these links to go to further links -
+
+> https://matplotlib.org/gallery/user_interfaces/embedding_in_tk_canvas_sgskip.html
+>
+> https://matplotlib.org/tutorials/introductory/customizing.html#sphx-glr-tutorials-introductory-customizing-py
+>
+> https://matplotlib.org/tutorials/index.html
+>
+> https://matplotlib.org/
+>
+> https://www.python-course.eu/tkinter_buttons.php
+>
+> https://github.com/PlatypusProject/Platypus-Monitoring-Project
+>
+> https://github.com/rudrathegreat
+
+https://www.python.org
