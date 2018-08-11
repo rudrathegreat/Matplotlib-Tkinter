@@ -205,6 +205,75 @@ a.plot(xList, yList)
 f.autofmt_xdate()
 
 ```
+## Weather-API
+### Installing it
+
+Weather-API is an API which allows Python to get temperature.
+
+With the API, you can get up-to-date weather information for any location, including 5-day forecast, wind, atmosphere, astronomy conditions, and more. You can lookup weather by woeid, city name or lat/long.
+
+To install, use pip -
+
+```Bash
+
+pip install weather-api
+
+```
+
+### Using it
+
+To get temperature, simply - 
+
+```Python
+
+from weather import Weather, Unit
+
+weather = Weather(unit=Unit.CELSIUS)
+
+lookup = weather.lookup(560743)
+condition = lookup.condition
+
+print(condition.text)
+
+```
+
+To get temperature via location name - 
+
+```Python
+
+weather = Weather(unit=Unit.CELSIUS)
+location = weather.lookup_by_location('dublin')
+condition = location.condition
+print(condition.text)
+
+```
+
+To get temperature via longitude and latitude -
+
+```Python
+
+weather = Weather(Unit.CELSIUS)
+lookup = w.lookup_by_latlng(53.3494,-6.2601)
+condition = lookup.condition
+print(condition.text)
+
+```
+
+And forecasts - 
+
+```Python
+
+weather = Weather(unit=Unit.CELSIUS)
+
+location = weather.lookup_by_location('dublin')
+forecasts = location.forecast
+for forecast in forecasts:
+    print(forecast.text)
+    print(forecast.date)
+    print(forecast.high)
+    print(forecast.low)
+    
+```
 
 ## Embedding in a Tk Canvas
 
@@ -346,6 +415,8 @@ You check out these links to go to further links -
 > https://matplotlib.org/
 >
 > https://www.python-course.eu/tkinter_buttons.php
+>
+> https://pypi.org/project/weather-api/
 >
 > https://github.com/PlatypusProject/Platypus-Monitoring-Project
 >
