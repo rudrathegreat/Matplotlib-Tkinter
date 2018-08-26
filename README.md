@@ -423,3 +423,7 @@ You check out these links to go to further links -
 > https://github.com/rudrathegreat
 >
 > https://www.python.org
+
+## News
+
+> Program now shows lots of graphs and added more menubars / less buttons
